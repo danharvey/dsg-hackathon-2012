@@ -1,4 +1,4 @@
-# Data Science Hackathon (Air Quality Prediction)=
+# Data Science Hackathon (Air Quality Prediction)
 
 ## The team
 Ferenc Huszar
