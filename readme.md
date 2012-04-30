@@ -1,10 +1,10 @@
 # Data Science Hackathon (Air Quality Prediction)
 
 ## The team
-Ferenc Huszar
-José Miguel Hernández Lobato
-Jedidiah Francis
-[Dan Harvey](https://github.com/danharvey)
+ * Ferenc Huszar
+ * José Miguel Hernández Lobato
+ * Jedidiah Francis
+ * [Dan Harvey](https://github.com/danharvey)
 
 # Method
  - Imputed data and reduce factors with SVD- [Principal Component Analysis for Large Scale Problems with Lots of Missing Values](http://www.mendeley.com/research/principal-component-analysis-for-large-scale-problems-with-lots-of-missing-values/)
