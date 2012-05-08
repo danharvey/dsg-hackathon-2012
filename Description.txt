@@ -67,6 +67,16 @@ The output of this script are the files
 3. Run Python scripts.
 ----------------------
 
+--- median_hour_month.py
+
+For two chunks there was no test data provided. For these two chunks we couldn't use the method we developed to regress future values against previous observations. These predictions had to be made based on knowledge of the hour and month at which the prediction has to be made.
+
+To handle these two chunks we have computed the global median value of each target variable in each month at certain hours of the day. To make the estimates more accurate we always included data from a month before and after each month. So if we wanted to make a prediction at 10am in October, out output was the median of the target variables at 10 o'clock in September, October and November.
+
+We used median, and not the mean, as we knew the evaluation is going to be based on mean absolute error. The empirical mean would minimise the mean squared error.
+
+The script median_hour_month.py processes the dataset and computes these median values for any month - hour pair.
+
 --------------------------
 4. Binarize the test file.
 --------------------------
@@ -121,3 +131,14 @@ The output of this script is the file
 ----------------------------------------------
 6. Blending with the benchmark hourly average.
 ----------------------------------------------
+
+Towards the end of the competition we have reached the point where we thought the predictive power of our simple linear model cannot be improved any further, and we were quite exhausted to try anything more sophisticated. As our predictions were still only marginally better than the provided baseline and sample submission 'submission_hour_chunk_means.csv', we thought we may improve our predictive power by forming an ensemble of our linear model and the provided nonparametric benchmark solution.
+
+blending.py computes a convex combination of our predictions with the supplied sample submission file 'submission_hour_chunk_means.csv' that we downloaded from kaggle.
+
+We have first tried a 95% - 5% blend of our predictions with benchmark predictions. That resulted in a public leaderboard score of 0.22631, thus indeed improving on using our method alone: our solution without bleniding produced a score of 0.22896, and the benchmark solution achieved a score of 0.27532.
+
+We have fitted a parabloa to these three observations (0,0.22896), (0.05, 0.22631) and (1,0.27532), and predicted that if the loss function was quadratic (which we knew it wasn't, but for large number of test predictions it can be reasonably close), an optimal ensemble would blend our method with the benchmark at about 33% - 67% ratio. To avoid overfitting to the part of the test set used for the public leaderboard scores we decided to try a more conservative 25%-75% mixture, which was our final, and best submission with a public score of 0.22075.
+
+The supplied image BlendingInterpolation.pdf shows how our last submission fits well onto a parabola predicted.
+
