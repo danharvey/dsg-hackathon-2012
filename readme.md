@@ -2,7 +2,7 @@
 This is the code behind our teams entry into the [Kaggle competition](https://www.kaggle.com/c/dsg-hackathon) for this hackathon.
 
 ## The team
- * [Ferenc Huszar](mlg.eng.cam.ac.uk/ferenc/)
+ * [Ferenc Huszar](http://mlg.eng.cam.ac.uk/ferenc/)
  * [José Miguel Hernández Lobato](http://www.eng.cam.ac.uk/~jmh233/)
  * [Jedidiah Francis](http://jedifran.com/)
  * [Dan Harvey](https://github.com/danharvey)
