@@ -23,9 +23,9 @@ the categorical variables (day of week, month, hour) by corresponding binary ind
 The script also estimates the missing values in the data using the variational matrix
 factorization method of 
 
-Raiko, T.; Ilin, A. & Juha, K. 
+<cite>Raiko, T.; Ilin, A. & Juha, K. 
 [Principal Component Analysis for Large Scale Problems with Lots of Missing Values](http://www.mendeley.com/research/principal-component-analysis-for-large-scale-problems-with-lots-of-missing-values) 
-European Conference on Machine Learning: ECML 2007, Springer Berlin / Heidelberg, 2007, 4701, 691-698
+European Conference on Machine Learning: ECML 2007, Springer Berlin / Heidelberg, 2007, 4701, 691-698</cite>
 
 The imputed dataset is also standardized so that each non-categorical variable
 has zero mean and unit standard deviation.
