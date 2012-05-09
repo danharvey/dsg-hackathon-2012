@@ -24,7 +24,7 @@ The script also estimates the missing values in the data using the variational m
 factorization method of 
 
 Raiko, T.; Ilin, A. & Juha, K. 
-Principal Component Analysis for Large Scale Problems with Lots of Missing Values 
+[Principal Component Analysis for Large Scale Problems with Lots of Missing Values](http://www.mendeley.com/research/principal-component-analysis-for-large-scale-problems-with-lots-of-missing-values) 
 European Conference on Machine Learning: ECML 2007, Springer Berlin / Heidelberg, 2007, 4701, 691-698
 
 The imputed dataset is also standardized so that each non-categorical variable
@@ -53,7 +53,7 @@ the dimensionality of the last 89 columns to just 40 by means of the variational
 method described by:
 
 Nakajima, S.; Sugiyama, M. & Tomioka, R.
-Global Analytic Solution for Variational Bayesian Matrix Factorization
+[Global Analytic Solution for Variational Bayesian Matrix Factorization](http://www.mendeley.com/research/global-analytic-solution-variational-bayesian-matrix-factorization)
 Advances in Neural Information Processing Systems, 2010
 
 This script generates the file "svd/factors.txt" with the 40 factors that summarize the 89 previous
