@@ -1,14 +1,15 @@
+# Description
+
 Here there is a short description of what scripts to run and what each script does.
 
---------------------------------------------------------------
-1. Estimate missing values and binarize categorical variables.
---------------------------------------------------------------
+-------------------------------------------------------------
+## 1. Estimate missing values and binarize categorical variables.
 
 For this we do
 
-$ cd dataPreprocessing
-$ R --no-save < preprocessData.R
-$ cd ..
+    $ cd dataPreprocessing
+    $ R --no-save < preprocessData.R
+    $ cd ..
 
 This script loads the training data from "raw_data/TrainingData.csv" and replaces
 the categorical variables (day of week, month, hour) by corresponding binary indicators.
@@ -24,23 +25,22 @@ has zero mean and unit standard deviation.
 
 The input to this script is the file 
 
-"raw_data/TrainingData.csv"		->	Contains the original training data.
+ * "raw_data/TrainingData.csv"		->	Contains the original training data.
 
 The output of this script are the files
 
-"dataPreprocessing/imputedDataSet.txt"	->	Contains the imputed dataset.
-"dataPreprocessing/meanMarginals.txt"	-> 	Contains the marginal means of each column from "dataPreprocessing/imputedDataSet.txt".
-"dataPreprocessing/sdMarginals.txt"	-> 	Contains the marginal standard deviation of each column from "dataPreprocessing/imputedDataSet.txt".
+ * "dataPreprocessing/imputedDataSet.txt"	->	Contains the imputed dataset.
+ * "dataPreprocessing/meanMarginals.txt"	-> 	Contains the marginal means of each column from "dataPreprocessing/imputedDataSet.txt".
+ * "dataPreprocessing/sdMarginals.txt"	-> 	Contains the marginal standard deviation of each column from "dataPreprocessing/imputedDataSet.txt".
 
 -------------------------------------------------------------
-2. Reduce the dimensionality of the time-series measurements.
--------------------------------------------------------------
+## 2. Reduce the dimensionality of the time-series measurements.
 
 For this we do
 
-$ cd svd
-$ R --no-save < doSVD.R
-$ cd ..
+    $ cd svd
+    $ R --no-save < doSVD.R
+    $ cd ..
 
 This script loads the imputed training data from "dataPreprocessing/imputedDataSet.txt" and reduces
 the dimensionality of the last 89 columns to just 40 by means of the variational matrix factorization
@@ -56,18 +56,17 @@ dataset, but with the last 89 columns replaced by the values of the 40 factor lo
 
 The input to this script is the file
 
-"dataPreprocessing/imputedDataSet.txt"		->	Contains the imputed dataset.
+ * "dataPreprocessing/imputedDataSet.txt"		->	Contains the imputed dataset.
 
 The output of this script are the files
 
-"svd/factors.txt"				->	Contains the 40 factors.
-"svd/imputedDataSetWithFactorLoadings.txt"	->	Contains the imputed dataset with the 40 factor loading variables.
+ * "svd/factors.txt"				->	Contains the 40 factors.
+ * "svd/imputedDataSetWithFactorLoadings.txt"	->	Contains the imputed dataset with the 40 factor loading variables.
 
 ----------------------
-3. Run Python scripts.
-----------------------
+## 3. Run Python scripts.
 
---- median_hour_month.py
+    median_hour_month.py
 
 For two chunks there was no test data provided. For these two chunks we couldn't use the method we developed to regress future values against previous observations. These predictions had to be made based on knowledge of the hour and month at which the prediction has to be made.
 
@@ -78,14 +77,13 @@ We used median, and not the mean, as we knew the evaluation is going to be based
 The script median_hour_month.py processes the dataset and computes these median values for any month - hour pair.
 
 --------------------------
-4. Binarize the test file.
---------------------------
+## 4. Binarize the test file.
 
 For this we do
 
-$ cd testSetPreprocessing
-$ R --no-save < preprocessData.R
-$ cd ..
+    $ cd testSetPreprocessing
+    $ R --no-save < preprocessData.R
+    $ cd ..
 
 This script binarizes the categorical variables in the test file in the same way as we did for the
 training file in step 1. For this, the script opens the file "python/training/submission_training.csv" and
@@ -106,9 +104,9 @@ The output of this script is the file
 
 For this we do
 
-$ cd fitLinearModel
-$ R --no-save < generateFinalPrediction.R
-$ cd ..
+    $ cd fitLinearModel
+    $ R --no-save < generateFinalPrediction.R
+    $ cd ..
 
 This script fits a linear model that predicts the current values of the factor loading variables given
 the previous values of those variables and the current categorical variables
@@ -117,16 +115,17 @@ final predictions for the test set.
 
 The input to this script are the files
 
-"imputedDataWithFactorLoadings/factors.txt"		-> 	Contains the 40 factors that sumirze the 89 measurement variables.
-"testSetPreprocessing/binarizedTestDataSet.txt"		->	Contains the binarized test set.
-"imputedDataWithFactorLoadings/meanMarginals.txt"	->	Contains the mean of each column of the imputed training set.
-"imputedDataWithFactorLoadings/sdMarginals.txt"		-> 	Contains the standard deviation of each column of the imputed training set.
+ * "imputedDataWithFactorLoadings/factors.txt"		-> 	Contains the 40 factors that sumirze the 89 measurement variables.
+ * "testSetPreprocessing/binarizedTestDataSet.txt"		->	Contains the binarized test set.
+ * "imputedDataWithFactorLoadings/meanMarginals.txt"	->	Contains the mean of each column of the imputed training set.
+ * "imputedDataWithFactorLoadings/sdMarginals.txt"		-> 	Contains the standard deviation of each column of the imputed training set.
 
-"python/training/training_*_ubertrain.csv"		-> 	Contains the training data for the prediction task * in advance,
-								where * is 1, 2 ,3, 4, 5, 10, 17, 24, 48, and 72.
+ * "python/training/training_*_ubertrain.csv"		-> 	Contains the training data for the prediction task * in advance,
+ where * is 1, 2 ,3, 4, 5, 10, 17, 24, 48, and 72.
+
 The output of this script is the file
 
-"fitLinearModel/finalResult.txt"			-> 	Contains the final submission file.
+ * "fitLinearModel/finalResult.txt"			-> 	Contains the final submission file.
 
 ----------------------------------------------
 6. Blending with the benchmark hourly average.
